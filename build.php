@@ -39,11 +39,11 @@ function generate_vhost_string($domain){
 function build_vhost($db) {
 	$file = grab_config('vhost_location');
     $FileHandle = fopen($file, 'w') or die("can't open file");
-	echo "\n Generating the vhost file\n \n";
+	echo "\n Generating the vhost file</br > </br >";
 	$result=$db->query("SELECT * FROM domain");
 	$x=1;
 	while ($row = $result->fetchArray()) {
-		echo "writing "  . $row['domain'] . " to point to " . $row['forward'] . " \n";
+		echo "writing "  . $row['domain'] . " to point to " . $row['forward'] . "</br >";
 		fwrite($FileHandle, generate_vhost_string($row));
 	}
 	fclose($FileHandle);
@@ -64,7 +64,7 @@ if ((count($results->fetcharray()))<2) {
 	$db->exec('insert into config (name,command) values ("vhost_location","vhosts.conf")');
 }
 build_vhost($db);
-//restart_apache();
+restart_apache();
 
 ?>
 
