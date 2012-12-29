@@ -18,6 +18,7 @@ function grab_config($config_var){
 function restart_apache(){
 	$apache_exec = grab_config('apache_location');
 	$configtest = shell_exec($apache_exec . ' configtest');
+	echo "Restarting Apache";
 		if (empty($configtest)) {
 		    $graceful = shell_exec($apache_exec . ' restart');
 		} else {
